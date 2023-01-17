@@ -1,6 +1,8 @@
 import scrapy
 
 
+# TO NORMALIZE!
+
 class Predprof(scrapy.Spider):
     name = 'predprof'
     allowed_domains = ['predprof.olimpiada.ru']
