@@ -1,0 +1,1 @@
+URL = "https://olymp.msu.ru/rus/page/main/29/news/items"
