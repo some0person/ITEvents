@@ -1,4 +1,5 @@
 import scrapy
+from datetime import datetime
 
 
 class Vosh(scrapy.Spider):
@@ -10,7 +11,7 @@ class Vosh(scrapy.Spider):
         for element in response.xpath("//div[@class='div_main_block']//tr"):
             if element.css("a.news_headline::text").get():
                 yield {
-                    "date": element.css("span.date::text").get(),
+                    "date": datetime.strptime(element.css("span.date::text").get(), "%d.%m.%Y"),
                     "title": element.css("a.news_headline::text").get(),
                     "link": "vos.olimpiada.ru" + element.css("a.news_headline::attr(href)").get(),
                     "description": ''

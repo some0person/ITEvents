@@ -1,5 +1,6 @@
 import scrapy
 from json import loads
+from datetime import datetime
 
 
 class Itmo(scrapy.Spider):
@@ -10,7 +11,7 @@ class Itmo(scrapy.Spider):
     def parse(self, response):
         for element in loads(response.text):
             yield {
-                "date": element["dateCreated"],
+                "date": datetime.strptime(element["dateCreated"].split('T')[0], "%Y-%m-%d"),
                 "title": element["name"],
                 "link": f"olymp.itmo.ru/s/{element['id']}",
                 "description": ''

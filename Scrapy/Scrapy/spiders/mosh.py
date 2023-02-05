@@ -1,4 +1,10 @@
 import scrapy
+from datetime import datetime
+from locale import setlocale, LC_TIME
+
+
+# NOTE: YOU NEED TO HAVE "ru_RU.UTF-8" LOCALE ON YOUR MACHINE
+setlocale(LC_TIME, "ru_RU.UTF-8")
 
 
 class Mosh(scrapy.Spider):
@@ -8,8 +14,12 @@ class Mosh(scrapy.Spider):
     
     def parse(self, response):
         for news_item in response.css(".news_item"):
+            date = news_item.css(".date::text").get()
+            if len(date.split()) != 3:
+                date += f" {datetime.now().year}"
+                
             yield {
-                "date": news_item.css(".date::text").get(),
+                "date": datetime.strptime(date, "%d %B %Y"),
                 "title": news_item.css("a.name::text").get(),
                 "link": "mos.olimpiada.ru" + news_item.css("a.name::attr(href)").get(),
                 "description": ''
