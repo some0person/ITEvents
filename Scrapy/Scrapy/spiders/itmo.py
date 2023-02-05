@@ -12,6 +12,6 @@ class Itmo(scrapy.Spider):
             yield {
                 "date": element["dateCreated"],
                 "title": element["name"],
-                "description": '',
-                "link": f"olymp.itmo.ru/s/{element['id']}"
+                "link": f"olymp.itmo.ru/s/{element['id']}",
+                "description": ''
                 }

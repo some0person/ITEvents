@@ -9,12 +9,14 @@ class Lomonosov(scrapy.Spider):
     def parse(self, response):
         URL = "https://olymp.msu.ru/rus/page/main/29/news/items"
         last_page = response.css("a.pagination__link.pagination__link--forward::attr(href)").get().split('=')[-1]
-        for news_item in response.css("article.blog-entry"):
-            yield {"date": news_item.css("time.blog-entry__date::text").get(),
-                   "title": news_item.css("h2.blog-entry__heading::text").get(),
-                   "description": news_item.css("p::text").get(),
-                   "link": news_item.css("a.blog-entry__wrapper::attr(href)").get()}
-        if not last_page.isnumeric():
-            yield {"Error": "page is not correct"}
         for i in range(1, int(last_page) + 1):
-            yield scrapy.Request(url=f"{URL}?page={i}", callback=self.parse)
+            yield scrapy.Request(url=f"{URL}?page={i}", callback=self.parse_page)
+
+    def parse_page(self, response):
+        for news_item in response.css("article.blog-entry"):
+            yield {
+                "date": news_item.css("time.blog-entry__date::text").get(),
+                "title": news_item.css("h2.blog-entry__heading::text").get(),
+                "link": "olymp.msu.ru" + news_item.css("a.blog-entry__wrapper::attr(href)").get(),
+                "description": news_item.css("p::text").get()
+                }

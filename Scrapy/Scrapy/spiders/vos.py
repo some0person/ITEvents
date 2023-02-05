@@ -2,7 +2,7 @@ import scrapy
 
 
 class Vosh(scrapy.Spider):
-    name = "vosh"
+    name = "vos"
     allowed_domains = ["vos.olimpiada.ru"]
     start_urls = ["https://vos.olimpiada.ru/news/count/-1?subject=all"]
     
@@ -12,4 +12,6 @@ class Vosh(scrapy.Spider):
                 yield {
                     "date": element.css("span.date::text").get(),
                     "title": element.css("a.news_headline::text").get(),
-                    "link": "vos.olimpiada.ru" + element.css("a.news_headline::attr(href)").get()}
+                    "link": "vos.olimpiada.ru" + element.css("a.news_headline::attr(href)").get(),
+                    "description": ''
+                    }
