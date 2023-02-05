@@ -1,13 +1,17 @@
-import json
-import requests
+import scrapy
+from json import loads
 
 
-def placeholder(date, name, description, link):
-    with open("result.txt", "a") as file:
-        file.write(f"{date} | {name} | {description} | {link}\n")
+class Itmo(scrapy.Spider):
+    name = "itmo"
+    allowed_domains = ["olymp.itmo.ru"]
+    start_urls = ["https://olymp.itmo.ru/api/news?languageCode=ru"]
 
-
-URL = "https://olymp.itmo.ru/api/news?languageCode=ru"
-
-for item in json.loads(requests.get(URL).text):
-    placeholder(item["dateCreated"].split('T')[0], item["name"], '', f"olymp.itmo.ru/s/{item['id']}")
+    def parse(self, response):
+        for element in loads(response.text):
+            yield {
+                "date": element["dateCreated"],
+                "title": element["name"],
+                "description": '',
+                "link": f"olymp.itmo.ru/s/{element['id']}"
+                }
