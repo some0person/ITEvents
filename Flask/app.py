@@ -5,6 +5,7 @@ from flask import Flask, render_template
 from datetime import datetime
 news = [
     {
+    'source': 'Source 0',
     'id': 0,
     'date': datetime(2023, 2, 24, 15, 56, 29, 188963),
     'title': 'Article 0',
@@ -13,6 +14,7 @@ news = [
     'date_updated': datetime.now()
     },
     {
+    'source': 'Source 1',
     'id': 1,
     'date': datetime(2023, 2, 24, 15, 58, 36, 194402),
     'title': 'Article 1',
