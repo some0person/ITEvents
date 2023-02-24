@@ -8,3 +8,6 @@ __pycache__/
 
 # Tests folders
 test*/
+
+# Important data
+.vscode
