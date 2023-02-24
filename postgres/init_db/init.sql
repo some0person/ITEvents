@@ -4,6 +4,7 @@ create table news (
     title varchar not null,
     link varchar not null,
     description varchar,
+    source varchar,
     date_updated varchar not null);
 
 create unique index news_id_uindex

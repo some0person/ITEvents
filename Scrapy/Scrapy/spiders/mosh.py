@@ -22,5 +22,6 @@ class Mosh(scrapy.Spider):
                 "date": datetime.strptime(date, "%d %B %Y"),
                 "title": news_item.css("a.name::text").get(),
                 "link": "mos.olimpiada.ru" + news_item.css("a.name::attr(href)").get(),
-                "description": ''
+                "description": '',
+                "source": "Московская олимпиада школьников"
                 }

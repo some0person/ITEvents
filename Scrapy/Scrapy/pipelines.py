@@ -23,8 +23,8 @@ class ScrapyPipeline:
                 
     def process_item(self, item, spider):
         self.cur.execute("""
-                         INSERT INTO news (date, title, link, description, date_updated) 
-                         VALUES (%s, %s, %s, %s, %s)""", (str(item["date"]), item["title"], item["link"], item["description"], str(datetime.now())))
+                         INSERT INTO news (date, title, link, description, source, date_updated) VALUES (%s, %s, %s, %s, %s, %s)
+                         """, (str(item["date"]), item["title"], item["link"], item["description"], item["source"], str(datetime.now())))
         self.connection.commit()
         return item
 

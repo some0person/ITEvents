@@ -14,5 +14,6 @@ class Itmo(scrapy.Spider):
                 "date": datetime.strptime(element["dateCreated"].split('T')[0], "%Y-%m-%d"),
                 "title": element["name"],
                 "link": f"olymp.itmo.ru/s/{element['id']}",
-                "description": ''
+                "description": '',
+                "source": '''Открытая олимпиада школьников "ИТМО"'''
                 }
