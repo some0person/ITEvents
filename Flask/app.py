@@ -17,27 +17,6 @@ for i in range(26):
         'date_updated': datetime.now()
         }
     )
-
-# news_origin = [
-#     {
-#     'source': 'Source 1',
-#     'id': 0,
-#     'date': datetime(2023, 2, 24, 15, 56, 29, 188963),
-#     'title': 'Article 0',
-#     'link': 'https://example.com/',
-#     'description': 'Example article descrition 0',
-#     'date_updated': datetime.now()
-#     },
-#     {
-#     'source': 'Source 0',
-#     'id': 1,
-#     'date': datetime(2023, 3, 24, 15, 58, 36, 194402),
-#     'title': 'Article 1',
-#     'link': 'https://example.com/',
-#     'description': 'Example article descrition 1',
-#     'date_updated': datetime.now()
-#     }
-# ]
 # =============== !TEMPORARY TESTING DATA! ===============
 
 
