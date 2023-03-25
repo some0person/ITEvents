@@ -9,4 +9,8 @@ import scrapy
 class ScrapyItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    date = scrapy.Field()
+    title = scrapy.Field()
+    link = scrapy.Field()
+    description = scrapy.Field()
+    source = scrapy.Field()

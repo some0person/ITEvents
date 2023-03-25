@@ -14,5 +14,6 @@ class Vosh(scrapy.Spider):
                     "date": datetime.strptime(element.css("span.date::text").get(), "%d.%m.%Y"),
                     "title": element.css("a.news_headline::text").get(),
                     "link": "vos.olimpiada.ru" + element.css("a.news_headline::attr(href)").get(),
-                    "description": ''
+                    "description": '',
+                    "source": "Всероссийская олимпиада школьников"
                     }

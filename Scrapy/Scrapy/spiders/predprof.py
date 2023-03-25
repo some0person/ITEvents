@@ -16,7 +16,8 @@ class Predprof(scrapy.Spider):
                     "date": datetime.strptime(allNews[x].css("b::text").get(), "%d.%m.%Y"),
                     "title": allNews[x].css("a::text").get(),
                     "link": "predprof.olimpiada.ru" + allNews[x].css('a').attrib["href"],
-                    "description": response.xpath(f"//div/div/div/p[{x + 1}]/span/text()").extract()[-1]
+                    "description": response.xpath(f"//div/div/div/p[{x + 1}]/span/text()").extract()[-1],
+                    "source": "Московская предпрофессиональная олимпиада"
                     }
             except IndexError:
                 pass
