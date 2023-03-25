@@ -12,7 +12,7 @@ class News:
         self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
         self.cur = self.connection.cursor()
 
-    def getNews(self, start, end, sortby="id", reverse=False, filtercell="title", filterarg=''):
+    def getNews(self, start, end, sortby, reverse, filtercell, filterarg):
         if reverse:
             reverse = "DESC"
         else:
