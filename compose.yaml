@@ -28,5 +28,17 @@ services:
     depends_on:
       database:
         condition: service_healthy
+  flask:
+    build: Flask
+    restart: unless-stopped
+    ports:
+      - "80:8000"
+    env_file:
+      - .env
+    depends_on:
+      database:
+        condition: service_healthy
+      scrapy:
+        condition: service_started
 volumes:
   database-data:
