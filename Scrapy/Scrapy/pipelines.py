@@ -22,6 +22,9 @@ class ScrapyPipeline:
         self.cur = self.connection.cursor()
                 
     def process_item(self, item, spider):
+        self.cur.execute(f"""SELECT link FROM news WHERE link='{item["link"]}'""")
+        if self.cur.fetchone():
+            return item
         self.cur.execute("""
                          INSERT INTO news (date, title, link, description, source, date_updated) VALUES (%s, %s, %s, %s, %s, %s)
                          """, (str(item["date"]), item["title"], item["link"], item["description"], item["source"], str(datetime.now())))

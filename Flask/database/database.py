@@ -22,6 +22,5 @@ class News:
                            LIKE '%{filterarg}%') sub WHERE rn>='{start}' AND rn<='{end}' ORDER By rn DESC")
         data = [{"id": element[0], "source": element[1],
                 "title": element[2], "link": element[3],
-                "description": element[4], "date": element[4]} for element in self.cur.fetchall()]
-
+                "description": element[4], "date": element[5]} for element in self.cur.fetchall()]
         return data[::-1]
