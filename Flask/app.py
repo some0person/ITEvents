@@ -5,16 +5,21 @@ from database.database import News
 app = Flask(__name__)
 
 
-def rmparam(query_string, *params_to_remove):
+def rmparams(query_string, *params_to_remove):
     params = [param.split('=') for param in query_string.split('&')]
     return '&'.join(['='.join(param) for param in params if param[0] not in params_to_remove])
+
+
+def addparam(query_string, param, value):
+    params = [param for param in query_string.split('&') if param]
+    return '&'.join(params + [f'{param}={value}'])
 
 
 @app.route('/', methods=['GET'])
 def home():
     args = request.args
     sorting_arg, reverse_arg, per_page_arg, page_arg, filterby_arg, filterword_arg = \
-        args.get('sort', default='id'), 'r' in args or args.get('r') != '0', args.get('perpage', default='8'), \
+        args.get('sort', default='id'), 'r' in args and args.get('r') != '0', args.get('perpage', default='8'), \
         args.get('p', default='0'), args.get('filterby', default='title'), args.get('filterword', default='')
     
     per_page = int(per_page_arg) if per_page_arg.isdecimal() and int(per_page_arg) >= 1 else 10
@@ -42,4 +47,4 @@ def home():
     #   http://127.0.0.1:5000/?sort=source&r=1  Sorting by 'source' with reverse
 
     return render_template('index.html', news=news_page, pages_buttons=pages_buttons, pages_amount=pages_amount,\
-                           page=page, pagestr=str(page), qs=query_string, rmparam=rmparam)
+                           page=page, pagestr=str(page), qs=query_string, rmparams=rmparams, addparam=addparam)
