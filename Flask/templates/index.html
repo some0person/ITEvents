@@ -29,13 +29,13 @@ Home page
 
 <div class="pagination">
     {% if page != 1 %}
-        <a href="?{{ rmparam(qs, 'p') }}p={{ page - 1 }}">«</a>
+        <a href="?{{ addparam(rmparams(qs, 'p'), 'p', page - 1) }}">«</a>
     {% endif %}
     {% for page_num in pages_buttons %}
-        <a {% if page_num == page %}class="active"{% endif %} href="?{{ rmparam(qs, 'p') }}p={{ page_num }}">{{ page_num }}</a>
+        <a {% if page_num == page %}class="active"{% endif %} href="?{{ addparam(rmparams(qs, 'p'), 'p', page_num) }}">{{ page_num }}</a>
     {% endfor %}
     {% if page != pages_amount %}
-        <a href="?{{ rmparam(qs, 'p') }}p={{ page + 1 }}">»</a>
+        <a href="?{{ addparam(rmparams(qs, 'p'), 'p', page + 1) }}">»</a>
     {% endif %}
 </div>
 
