@@ -23,7 +23,9 @@ class News:
         
         data = [{"id": element[0], "source": element[1],
                 "title": element[2], "link": element[3],
-                "description": element[4], "date": element[5],
-                "count": element[6]} for element in self.cur.fetchall()]
+                "description": element[4], "date": element[5]} for element in self.cur.fetchall()]
+        return data[::-1]
+
+    def getCount(self, filtercell, filterarg):
         self.cur.execute(f"SELECT COUNT(*) FROM news WHERE {filtercell} LIKE '%{filterarg}%'")
-        return [data[::-1], self.cur.fetchone()[0]]
+        return self.cur.fetchone()[0]

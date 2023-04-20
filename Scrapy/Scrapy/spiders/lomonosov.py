@@ -15,10 +15,14 @@ class Lomonosov(scrapy.Spider):
 
     def parse_page(self, response):
         for news_item in response.css("article.blog-entry"):
+            description = news_item.css("p::text").get()
+            if description is None:
+                description = ""
+                
             yield {
                 "date": datetime.strptime(news_item.css("time.blog-entry__date::text").get(), "%d.%m.%Y"),
                 "title": news_item.css("h2.blog-entry__heading::text").get(),
                 "link": "olymp.msu.ru" + news_item.css("a.blog-entry__wrapper::attr(href)").get(),
-                "description": news_item.css("p::text").get(),
+                "description": description,
                 "source": '''Олимпиада школьников "Ломоносов"'''
                 }
