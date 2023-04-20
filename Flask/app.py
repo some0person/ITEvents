@@ -35,7 +35,7 @@ def home():
     query_string = request.query_string.decode("utf-8")
 
     # Should be replaced later with database functions
-    posts_amount = 800
+    posts_amount = News().getCount(filterby_arg, filterword_arg)
     pages_amount = int(posts_amount / per_page + 0.9)
 
     page = int(page_arg) if page_arg.isdecimal() and 1 <= int(page_arg) <= pages_amount \
