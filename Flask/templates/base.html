@@ -1,16 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link  rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f46335e3a4.js" crossorigin="anonymous"></script>
     <title>{% block title %}{% endblock %}</title>
-    <!-- <link rel="stylesheet" href="./style.css"> -->
-    <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon"> -->
+    <script defer src="./static/js/script.js"></script>
   </head>
+  <header style = "background-color: black; height: 60px;">
+    <div clas="header-text">Олимпиады России</div>
+  </header>
   <body>
-    {% block body %}{% endblock %}
+    <div class = "buttonsWrap container">
+      <div class="dropdown">
+        <button class="filterSearch dropdown-toggle"type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Сортировка по
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="?{{ addparam(rmparams(qs, 'sort'), 'sort', 'source') }}">Источнику</a></li>
+          <li><a class="dropdown-item" href="?{{ addparam(rmparams(qs, 'sort'), 'sort', 'title') }}">Названию</a></li>
+          <li><a class="dropdown-item" href="?{{ addparam(rmparams(qs, 'sort'), 'sort', 'description') }}">Описанию</a></li>
+          <li><a class="dropdown-item" href="?{{ addparam(rmparams(qs, 'sort'), 'sort', 'date') }}">Дате</a></li>
+        </ul>
+      </div>
+      <div>
+        {% if reverse %}
+          <a class="filterSearch" href="?{{ rmparams(qs, 'r') }}" style="width: 91%;">Обычный порядок</a>
+        {% else %}
+          <a class="filterSearch" href="?{{ addparam(rmparams(qs, 'r'), 'r', '1') }}" style="width: 91%;">Обратный порядок</a>
+        {% endif %}
+      </div>
+      <div class="dropdown">
+        <button class="filterSearch bttn dropdown-toggle" style="width: 91%;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Поиск по
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="?{{ addparam(rmparams(qs, 'searchby'), 'searchby', 'source') }}">Источнику</a></li>
+          <li><a class="dropdown-item" href="?{{ addparam(rmparams(qs, 'searchby'), 'searchby', 'title') }}">Названию</a></li>
+          <li><a class="dropdown-item" href="?{{ addparam(rmparams(qs, 'searchby'), 'searchby', 'description') }}">Описанию</a></li>
+        </ul>
+      </div>
+      <form class="searchWrap">
+        <input name="search" class="filterSearch" placeholder="Поиск по {{ searchby }}" value="{{ getparam(qs, 'search') }}">
+        {% for parameter in rmparams(qs, 'search').split('&') %}
+        <input type="hidden" name="{{ parameter.split('=')[0] }}" value="{{ parameter.split('=')[1] }}">
+        {% endfor %}
+        <button type="submit" class="filterSearch">Искать</button>
+      </form>
+    </div>
+    <main style="min-height: calc(100vh - 122px - 60px - 200px);">
+      {% block body %}{% endblock %}
+    </main>
+    <footer class="footer">
+      <div class="footer-links-wrap container" >
+        <div class="footer-links-cell">
+          <a class="footer-links" href="https://sch2098s.mskobr.ru/"><i class="fas fa-school" aria-hidden="true"></i> Школа № 2098</a>
+        </div>
+        <div class="footer-links-cell">
+          <a class="footer-links" href="https://github.com/some0person/ITEvents"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

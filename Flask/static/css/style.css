@@ -7,13 +7,13 @@
     padding: .5em 2em;
     outline: none;
     border: 2px solid;
-    border-radius: 1px;
+    border-radius: 6px;
     transition: 0.2s;
     width: 200px;
     
 }
-.stretched-link:hover { background: rgba(0, 0, 0, 0.2); }
-.stretched-link:active { background: rgb(41, 32, 32); }
+.stretched-link:hover { background: rgb(83, 83, 83); color: #ffffff;}
+.stretched-link:active { background: rgb(41, 32, 32); color: #ffffff;}
 
 .pagination {
     position: absolute;
@@ -24,7 +24,6 @@
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
-    padding-bottom: 30px;
 }
 
 .pagination a {
@@ -40,3 +39,91 @@
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+
+.footer {
+    background-color: black;
+    height: 100px;
+    margin-top: 100px;
+    /* position: absolute; */
+    width: 100%;
+    /* bottom: 0; */
+}
+
+.buttonsWrap { 
+    display: grid;
+    grid-template-columns: 6fr 7fr 6fr 16fr;
+}
+
+.filterSearch {
+    display: inline-block;
+    color: rgb(43, 27, 27);
+    font-weight: 700;
+    text-decoration: none;
+    user-select: none;
+    padding: .5em 2em;
+    margin: 50px 10px 30px 10px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.searchWrap { 
+    display: grid;
+    grid-template-columns: 7fr 1fr;
+}
+
+.img-article-container {
+    height: 250px;
+    position: relative;
+}
+
+.sourceImg {
+    filter: brightness(80%);
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.footer-links-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 30px;
+    color:#ddd;
+}
+
+.footer-links-cell {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-links {
+    display: inline-block;
+    color: rgb(193, 193, 193);
+    font-weight: 700;
+    text-decoration: none;
+    user-select: none;
+    padding: .5em 2em;
+    outline: none;
+    border: 1px solid;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.footer-links:hover {
+    background: rgb(83, 83, 83); 
+    color: #ffffff;
+}
+.footer-links:active {
+    background: rgb(122, 122, 122); 
+    color: #ffffff;
+}
+
+.header-text {
+    margin-left: auto;
+    margin-right: auto;
+    color:#ddd;
+    font-size: 25px;
+    padding-top: 12px;
+    text-align: center;
+}
