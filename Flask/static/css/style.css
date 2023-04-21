@@ -70,7 +70,7 @@
 
 .searchWrap { 
     display: grid;
-    grid-template-columns: 7fr 1fr;
+    grid-template-columns: 28fr 1fr 4fr;
 }
 
 .img-article-container {

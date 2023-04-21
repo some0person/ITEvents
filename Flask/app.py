@@ -24,8 +24,6 @@ def getparam(query_string, param_to_get):
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if request.method == "POST":
-        print(request.form.get("randomInput"))
     args = request.args
     sorting_arg, reverse_arg, per_page_arg, page_arg, filterby_arg, filterword_arg = \
         args.get('sort', default='id'), 'r' in args and args.get('r') != '0', args.get('perpage', default='8'), \
@@ -53,12 +51,12 @@ def home():
     news_page = [article | {'img_source': f"{'_'.join(article['link'].split('.')[:2])}.jpg"} for article in news_page]
         
     # Pages usage examples:
-    #   http://127.0.0.1:5000/?p=0&perpage=15   Page 0 with 15 articles on each
-    #   http://127.0.0.1:5000/?p=5&perpage=2    Page 5 with 2 articles on each
+    #   http://localhost/?p=0&perpage=15   Page 0 with 15 articles on each
+    #   http://localhost/?p=5&perpage=2    Page 5 with 2 articles on each
 
     # Sorting examples:
-    #   http://127.0.0.1:5000/?sort=source  Sorting by 'source'
-    #   http://127.0.0.1:5000/?sort=source&r=1  Sorting by 'source' with reverse
+    #   http://localhost/?sort=source  Sorting by 'source'
+    #   http://localhost/?sort=source&r=1  Sorting by 'source' with reverse
 
     return render_template('index.html', news=news_page, pages_buttons=pages_buttons, pages_amount=pages_amount,\
                            searchby=searchby, getparam=getparam, page=page, pagestr=str(page), qs=query_string,\

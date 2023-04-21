@@ -49,6 +49,7 @@
         {% for parameter in rmparams(qs, 'search').split('&') %}
         <input type="hidden" name="{{ parameter.split('=')[0] }}" value="{{ parameter.split('=')[1] }}">
         {% endfor %}
+        <a class="filterSearch" href="?{{ rmparams(qs, 'search') }}"><i class="fas fa-trash-alt"></i></a>
         <button type="submit" class="filterSearch">Искать</button>
       </form>
     </div>
